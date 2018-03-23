@@ -1,3 +1,7 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=c41e558ca7bc990019d1a7a512015b3d5eddaa97bf66b85c71d71b55f7cea036
+    
 language: ruby
 rvm:
 - 2.3.5
@@ -9,3 +13,12 @@ deploy:
   app: project-weather
   on:
     repo: MNanko/Project-weather
+
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+script:
+  - bundle exec rspec
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
