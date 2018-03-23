@@ -18,3 +18,4 @@ def forecast
     end
   end
 end
+
