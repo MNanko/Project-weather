@@ -1,3 +1,11 @@
 language: ruby
 rvm:
 - 2.3.5
+deploy:
+  provider: heroku
+  api_key:
+    secure: s++52IkGH6OlNebPD40x9vQaXZHFQuDMLh7dqTKzbQgYcNeWxkcb34BIVzmvYqt6ibR/GlypCcpUMm0iwcWRNGh7L6ncT1m31A8G7xnsmP1xDO9sWPDFk+sQPd9MRojNpsOBUYvZXANK8yev25VG6zXQCEeQSVT+SPEZEcd05ngB9J9Qv2gQmgP6bJamtYNVq6s0QBH/waxD+graQs4nbriM0XZaZg0bZw9uv2P3mUUurqeijs39BfVKE8dFW2Hw/NQs7rVnbGphXLNBcN9kea5Q+TD5pmrxaRn2zMOtqCC4nHuRQ2R9zT7Yo9ThS3EJdJos4kLAPsOlHCtkoqnVgVfOjz+eSoYS2cnH+2ulbhmfZhPT3csIURfaNKTz7lwtfVhAXR58deL0pOkkt7umko0Y7Bx/oyKxzjhVp4AhgGYbgxnGRGkz/eSuysEydRDKLV+0J3bOR3qaNOIda+5N4cygYu7jVhd0imuHJo6wdje/YrjmCeexxcXviXFidg8O+gppWng5xzT/m/RLS4dxgbVlAGV0YynJlyhgAPKwSgOGBHXRjikI/ACJHLED9KetCR4grJe0NQF6mtQFQOVLlK/xe6MgL6ZHsqq+aQID6IupQndgHeGWfZzVdAROqwSjPCgTfzBAR60ioTgAFYed8HUhsml9aWWrCsLVDZIgD6k=
+  run: "rake db:migrate"
+  app: project-weather
+  on:
+    repo: MNanko/Project-weather
