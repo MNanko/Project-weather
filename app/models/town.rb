@@ -1,9 +1,9 @@
 class Town < ActiveRecord::Base
   before_validation :geocode
   validates :town, :lat, :lon, presence:true
-end
 
-public
+
+
 def forecast
    forecast = ForecastIO.forecast(lat, lon, params: { units: 'si', lang: 'fr' }).currently
   end
@@ -17,3 +17,4 @@ def forecast
     self.lon=current_town.lon
     end
   end
+end
