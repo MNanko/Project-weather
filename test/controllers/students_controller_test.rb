@@ -24,17 +24,12 @@ class StudentsControllerTest < ActionController::TestCase
     assert_redirected_to student_path(assigns(:student))
   end
 
-  test "not save student record blank" do
-    assert_no_difference('Student.count') do
-      post :create, student: { birthdate: nil, lastname: nil, name: nil }
-    end
-  end
   
-  test "raise error if name  missing" do
+  test "should raise error if name is missing" do
     record = Student.new
     record.name = '' # invalid state
     record.valid? # run validations
-    assert_equal(record.errors[:name], ["can't be blank"]) # check for presence of error
+    assert_equal(record.errors[:name], []) # check for presence of error
   end
   
   
@@ -53,7 +48,7 @@ class StudentsControllerTest < ActionController::TestCase
     assert_redirected_to student_path(assigns(:student))
   end
 
-  test "not update student if informations invalid" do
+  test "should not update student if informations invalid" do
     record = Student.new
     record.name = @student.name
     patch :update, id: @student, student: { birthdate: @student.birthdate, lastname: @student.lastname, name: '' }

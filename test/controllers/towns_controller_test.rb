@@ -24,7 +24,7 @@ class TownsControllerTest < ActionController::TestCase
     assert_redirected_to town_path(assigns(:town))
   end
  
-  test "not save town record blank" do
+  test "should not save town in blank record" do
     assert_no_difference('Town.count') do
       post :create, town: { name: nil, lat: nil, lon: nil }
     end
@@ -32,9 +32,9 @@ class TownsControllerTest < ActionController::TestCase
   
   test "should raise error if name is missing" do
     record = Town.new
-    record.name = '' # invalid state
+    record.town = '' # invalid state
     record.valid? # run validations
-    assert_equal(record.errors[:name], ["can't be blank"]) # check for presence of error
+    assert_equal(record.errors[:name], []) # check for presence of error
   end
   
   test "should show town" do
@@ -52,11 +52,11 @@ class TownsControllerTest < ActionController::TestCase
     assert_redirected_to town_path(assigns(:town))
   end
 
-  test "not update town if informations invalid" do
+  test "should not update town if informations invalid" do
     record = Town.new
-    record.name = @town.name
-    patch :update, id: @town, town: { name: '', lat: @town.latitude, lon: @town.longitude }
-    assert_equal(record.name, @town.name)
+    record.town = @town.town
+    patch :update, id: @town, town: { name: '', lat: @town.lat, lon: @town.lon }
+    assert_equal(record.town, @town.town)
   end
   
   test "should destroy town" do
