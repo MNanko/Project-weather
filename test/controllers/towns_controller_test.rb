@@ -30,7 +30,7 @@ class TownsControllerTest < ActionController::TestCase
     end
   end
   
-  test "should raise error if name is missing" do
+  test "should raise error if Town name is missing" do
     record = Town.new
     record.town = '' # invalid state
     record.valid? # run validations
